@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>War Racing</title>
+    <style>
+      body {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/examples/js/loaders/FBXLoader.js"></script>
+
+    <script type="module">
+      import * as THREE from "./three.module.js";
+      import { OrbitControls } from "./OrbitControls.js";
+      import { STLLoader } from "./Loaders/STLLoader.js";
+      import { GLTFLoader } from "./Loaders/GLTFLoader.js";
+      import {OBJLoader} from "./Loaders/OBJLoader.js";
+      import {MTLLoader} from "./Loaders/MTLLoader.js";
+     // import {FBXLoader} from "./Loaders/FBXLoader.js";
+
+     function handleObjectMovement(object, keys) {
+    const state = {
+        left: false,
+        right: false,
+        up: false,
+        down: false,
+    };
+
+    document.addEventListener('keydown', (e) => {
+      switch (e.keyCode) {
+            case keys.left:
+                state.left = true;
+                object.position.x -= 1;
+                break;
+            case keys.right:
+                state.right = true;
+                object.position.x += 1;
+                break;
+            case keys.up:
+                state.up = true;
+                object.position.z -= 1;
+                break;
+            case keys.down:
+                state.down = true;
+                object.position.z += 1;
+                break;
+        }
+    });
+
+    document.addEventListener('keyup', (e) => {
+        switch (e.keyCode) {
+            case keys.left:
+                state.left = false;
+                break;
+            case keys.right:
+                state.right = false;
+                break;
+            case keys.up:
+                state.up = false;
+                break;
+            case keys.down:
+                state.down = false;
+                break;
+        }
+    });
+
+ 
+  
+}
+
+
+function handleObjectMovement2(object, keys) {
+    const state = {
+        left: false,
+        right: false,
+        up: false,
+        down: false,
+    };
+
+    document.addEventListener('keydown', (e) => {
+        switch (e.keyCode) {
+            case keys.left:
+                state.left = true;
+                object.position.x -= 1;
+                break;
+            case keys.right:
+                state.right = true;
+                object.position.x += 1;
+                break;
+            case keys.up:
+                state.up = true;
+                object.position.z -= 1;
+                break;
+            case keys.down:
+                state.down = true;
+                object.position.z += 1;
+                break;
+        }
+      
+    });
+
+    document.addEventListener('keyup', (e) => {
+        switch (e.keyCode) {
+            case keys.left:
+                state.left = false;
+                break;asdad
+            case keys.right:
+                state.right = false;
+                
+                break;
+            case keys.up:
+                state.up = false;
+                break;
+            case keys.down:
+                state.down = false;
+                break;
+        }
+    });
+
+ 
+}
+
+    const skydomeimage = new THREE.TextureLoader().load("./skydome.jpg")
+      const scene = new THREE.Scene();
+      scene.background = skydomeimage;
+
+      const camera = new THREE.PerspectiveCamera(
+        45,
+        window.innerWidth / window.innerHeight
+      );
+
+      
+
+      camera.position.set(0, 5, 20);
+
+      const renderer = new THREE.WebGLRenderer();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.body.appendChild(renderer.domElement);
+
+      const hemisphereLight = new THREE.HemisphereLight(0xffffbb, 0x080820, 1);
+      scene.add(hemisphereLight);
+
+      const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+      directionalLight.position.set(1, 5, -1);
+      scene.add(directionalLight);
+
+      const cube1Geometry = new THREE.BoxGeometry(1, 1, 1);
+
+      const cube1Material = new THREE.MeshPhongMaterial({ color: "aqua" });
+      const cube1 = new THREE.Mesh(cube1Geometry, cube1Material);
+      cube1.position.set(3, 0, 0);
+
+      const planeGeometry = new THREE.PlaneGeometry(50, 50);
+      const planeMaterial = new THREE.MeshStandardMaterial({
+        color: "slategrey",
+      });
+      const plane = new THREE.Mesh(planeGeometry, planeMaterial);
+      plane.rotateX(-Math.PI / 2);
+      plane.position.set(0, -2.5, 0);
+
+      const light = new THREE.PointLight( 0xffffff, 100, 20);
+      light.position.set(0, 20, 0);
+      light.castShadow = true; // default false
+
+
+      scene.add( light, plane);
+
+      
+
+      
+      const mtlLoader = new MTLLoader();
+      mtlLoader.load('./gcw/carros/carro_normal.mtl',
+        function(materials){
+          materials.preload();
+   
+             const loader = new OBJLoader();
+             loader.setMaterials(materials);
+              loader.load(
+                  './gcw/carros/carro_normal.obj', // Ruta de tu archivo OBJ
+                  function (object) {
+                    handleObjectMovement(object, { left: 37, right: 39, up: 38, down: 40  });
+                   object.scale.set(.05,.05,.05);
+                    object.position.set(0,5,0);
+                      scene.add(object);
+                  },
+                  function (xhr) {
+                      console.log((xhr.loaded / xhr.total * 100) + '% cargado');
+                  },
+                  function (error) {
+                      console.error('Ocurrió un error al cargar el modelo: ', error);
+                  }
+              );
+        }
+   
+   
+   
+    );
+   
+          // Cargar el modelo OBJ
+        const mtlLoader2 = new MTLLoader();
+        mtlLoader2.load('./gcw/carros/convertible.mtl',
+        function(materials){
+          materials.preload();
+   
+             const loader = new OBJLoader();
+             loader.setMaterials(materials);
+              loader.load(
+                  './gcw/carros/convertible.obj', // Ruta de tu archivo OBJ
+                  function (object) {
+                   
+                   handleObjectMovement2(object, { left: 65, right: 68, up: 87, down: 83 });
+                   object.scale.set(.05,.05,.05);
+                    object.position.set(5,0,0);
+                      scene.add(object);
+                  },
+                  function (xhr) {
+                      console.log((xhr.loaded / xhr.total * 100) + '% cargado');
+                  },
+                  function (error) {
+                      console.error('Ocurrió un error al cargar el modelo: ', error);
+                  }
+              );
+        }
+   
+   
+   
+    );
+   
+   
+          // Cargar el modelo OBJ
+          const mtlLoader3 = new MTLLoader();
+    mtlLoader3.load('./gcw/carros/deportivo.mtl',
+        function(materials){
+          materials.preload();
+   
+             const loader = new OBJLoader();
+             loader.setMaterials(materials);
+              loader.load(
+                  './gcw/carros/deportivo.obj', // Ruta de tu archivo OBJ
+                  function (object) {
+   
+                   object.scale.set(.05,.05,.05);
+                    object.position.set(-5,0,0);
+                      scene.add(object);
+                  },
+                  function (xhr) {
+                      console.log((xhr.loaded / xhr.total * 100) + '% cargado');
+                  },
+                  function (error) {
+                      console.error('Ocurrió un error al cargar el modelo: ', error);
+                  }
+              );
+        }
+   
+   
+   
+    );
+   
+               // Cargar el modelo OBJ
+               const mtlLoader4 = new MTLLoader();
+    mtlLoader4.load('./gcw/carros/lambo.mtl',
+        function(materials){
+          materials.preload();
+   
+             const loader = new OBJLoader();
+             loader.setMaterials(materials);
+              loader.load(
+                  './gcw/carros/lambo.obj', // Ruta de tu archivo OBJ
+                  function (object) {
+   
+                   object.scale.set(.05,.05,.05);
+                    object.position.set(-10,0,0);
+                      scene.add(object);
+                  },
+                  function (xhr) {
+                      console.log((xhr.loaded / xhr.total * 100) + '% cargado');
+                  },
+                  function (error) {
+                      console.error('Ocurrió un error al cargar el modelo: ', error);
+                  }
+              );
+        }
+   
+   
+   
+    );
+   
+   
+                 // Cargar el modelo OBJ
+                 const mtlLoader5 = new MTLLoader();
+               mtlLoader5.load('./gcw/carros/muscle.mtl',
+               function(materials){
+          materials.preload();
+   
+             const loader = new OBJLoader();
+             loader.setMaterials(materials);
+              loader.load(
+                  './gcw/carros/muscle.obj', // Ruta de tu archivo OBJ
+                  function (object) {
+   
+                   object.scale.set(.05,.05,.05);
+                    object.position.set(10,0,0);
+                      scene.add(object);
+                  },
+                  function (xhr) {
+                      console.log((xhr.loaded / xhr.total * 100) + '% cargado');
+                  },
+                  function (error) {
+                      console.error('Ocurrió un error al cargar el modelo: ', error);
+                  }
+              );
+        }
+   
+   
+   
+    );
+     
+
+    
+                 // Cargar el modelo OBJ
+    const stadium = new MTLLoader();
+          stadium.load('./estadio/estadio.mtl',
+          function(materials){
+          materials.preload();
+   
+             const loader = new OBJLoader();
+             loader.setMaterials(materials);
+              loader.load(
+                  './estadio/estadio.obj', // Ruta de tu archivo OBJ
+                  function (object) {
+   
+                   object.scale.set(.5,.5,.5);
+                    object.position.set(0,-5,0);
+                      scene.add(object);
+                  },
+                  function (xhr) {
+                      console.log((xhr.loaded / xhr.total * 100) + '% cargado');
+                  },
+                  function (error) {
+                      console.error('Ocurrió un error al cargar el modelo: ', error);
+                  }
+              );
+        }
+   
+   
+   
+    );
+
+      
+                 // Cargar el modelo OBJ
+    const aleron = new MTLLoader();
+          aleron.load('./gcw/aleroon/aleron.mtl',
+          function(materials){
+          materials.preload();
+   
+             const loader = new OBJLoader();
+             loader.setMaterials(materials);
+              loader.load(
+                  './gcw/aleroon/aleron.obj', // Ruta de tu archivo OBJ
+                  function (object) {
+   
+                   object.scale.set(1,1,1);
+                    object.position.set(5,15,0);
+                      scene.add(object);
+                  },
+                  function (xhr) {
+                      console.log((xhr.loaded / xhr.total * 100) + '% cargado');
+                  },
+                  function (error) {
+                      console.error('Ocurrió un error al cargar el modelo: ', error);
+                  }
+              );
+        }
+   
+   
+   
+    );
+
+        
+                 // Cargar el modelo OBJ
+    const caja = new MTLLoader();
+           caja.load('./gcw/caja/caja_herramientas.mtl',
+          function(materials){
+          materials.preload();
+   
+             const loader = new OBJLoader();
+             loader.setMaterials(materials);
+              loader.load(
+                  './gcw/caja/caja_herramientas.obj', // Ruta de tu archivo OBJ
+                  function (object) {
+   
+                   object.scale.set(.2,.2,.2);
+                    object.position.set(15,15,0);
+                      scene.add(object);
+                  },
+                  function (xhr) {
+                      console.log((xhr.loaded / xhr.total * 100) + '% cargado');
+                  },
+                  function (error) {
+                      console.error('Ocurrió un error al cargar el modelo: ', error);
+                  }
+              );
+        }
+   
+   
+   
+    );
+
+    const escape = new MTLLoader();
+    escape.load('./gcw/escape/escape.mtl',
+          function(materials){
+          materials.preload();
+   
+             const loader = new OBJLoader();
+             loader.setMaterials(materials);
+              loader.load(
+                  './gcw/escape/escape.obj', // Ruta de tu archivo OBJ
+                  function (object) {
+   
+                   object.scale.set(.5,.5,.5);
+                    object.position.set(10,20,0);
+                      scene.add(object);
+                  },
+                  function (xhr) {
+                      console.log((xhr.loaded / xhr.total * 100) + '% cargado');
+                  },
+                  function (error) {
+                      console.error('Ocurrió un error al cargar el modelo: ', error);
+                  }
+              );
+        }
+   
+   
+   
+    );
+
+    const llanta = new MTLLoader();
+    llanta.load('./gcw/llanta/llanta.mtl',
+          function(materials){
+          materials.preload();
+   
+             const loader = new OBJLoader();
+             loader.setMaterials(materials);
+              loader.load(
+                  './gcw/llanta/llanta.obj', // Ruta de tu archivo OBJ
+                  function (object) {
+   
+                   object.scale.set(.2,.2,.2);
+                    object.position.set(-15,15,0);
+                      scene.add(object);
+                  },
+                  function (xhr) {
+                      console.log((xhr.loaded / xhr.total * 100) + '% cargado');
+                  },
+                  function (error) {
+                      console.error('Ocurrió un error al cargar el modelo: ', error);
+                  }
+              );
+        }
+   
+   
+   
+    );
+
+    const motor = new MTLLoader();
+    motor.load('./gcw/motor/motor.mtl',
+          function(materials){
+          materials.preload();
+   
+             const loader = new OBJLoader();
+             loader.setMaterials(materials);
+              loader.load(
+                  './gcw/motor/motor.obj', // Ruta de tu archivo OBJ
+                  function (object) {
+   
+                   object.scale.set(.7,.7,.7);
+                    object.position.set(-10,15,0);
+                      scene.add(object);
+                  },
+                  function (xhr) {
+                      console.log((xhr.loaded / xhr.total * 100) + '% cargado');
+                  },
+                  function (error) {
+                      console.error('Ocurrió un error al cargar el modelo: ', error);
+                  }
+              );
+        }
+   
+   
+   
+    );
+
+    const nitro = new MTLLoader();
+    nitro.load('./gcw/nitro/nitro.mtl',
+          function(materials){
+          materials.preload();
+   
+             const loader = new OBJLoader();
+             loader.setMaterials(materials);
+              loader.load(
+                  './gcw/nitro/nitro.obj', // Ruta de tu archivo OBJ
+                  function (object) {
+   
+                   object.scale.set(.4,.4,.4);
+                    object.position.set(10,10,0);
+                      scene.add(object);
+                  },
+                  function (xhr) {
+                      console.log((xhr.loaded / xhr.total * 100) + '% cargado');
+                  },
+                  function (error) {
+                      console.error('Ocurrió un error al cargar el modelo: ', error);
+                  }
+              );
+        }
+   
+   
+   
+    );
+
+    const puerta = new MTLLoader();
+    puerta.load('./gcw/puerta/puerta.mtl',
+          function(materials){
+          materials.preload();
+   
+             const loader = new OBJLoader();
+             loader.setMaterials(materials);
+              loader.load(
+                  './gcw/puerta/puerta.obj', // Ruta de tu archivo OBJ
+                  function (object) {
+   
+                   object.scale.set(.2,.2,.2);
+                   object.position.set(15,5,0);
+                   object.rotation.z =  object.rotation.z +(Math.PI / 180*90);
+                      scene.add(object);
+                  },
+                  function (xhr) {
+                      console.log((xhr.loaded / xhr.total * 100) + '% cargado');
+                  },
+                  function (error) {
+                      console.error('Ocurrió un error al cargar el modelo: ', error);
+                  }
+              );
+        }
+   
+   
+   
+    );
+
+
+    const suspension = new MTLLoader();
+    suspension.load('./gcw/suspension/suspension.mtl',
+          function(materials){
+          materials.preload();
+   
+             const loader = new OBJLoader();
+             loader.setMaterials(materials);
+              loader.load(
+                  './gcw/suspension/suspension.obj', // Ruta de tu archivo OBJ
+                  function (object) {
+   
+                   object.scale.set(.2,.2,.2);
+                    object.position.set(5,10,0);
+                      scene.add(object);
+                  },
+                  function (xhr) {
+                      console.log((xhr.loaded / xhr.total * 100) + '% cargado');
+                  },
+                  function (error) {
+                      console.error('Ocurrió un error al cargar el modelo: ', error);
+                  }
+              );
+        }
+   
+   
+   
+    );
+
+
+
+
+      const cameraControl = new OrbitControls(camera, renderer.domElement);
+
+      function animate() {
+       
+        handleObjectMovement(mtlLoader, { left: 37, right: 39, up: 38, down: 40  });
+        handleObjectMovement2(mtlLoader2, { left: 65, right: 68, up: 87, down: 83 });
+      
+        renderer.render(scene, camera);
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+    </script>
+  </body>
+</html>

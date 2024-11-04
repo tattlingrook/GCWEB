@@ -1,0 +1,145 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'melted monster', sans-serif;
+    color: white;
+    background-image: url('../img/BackGround_MenuPausa.png');
+    background-size: cover;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.inner-container {
+    background-color: #8fa7b1;
+    width:  360px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border: 2px solid white;
+    border-radius: 10px;
+}
+
+.black-square {
+    background-color: black;
+    width:  380px;
+    height: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+
+h1, h2 {
+    margin: 5;
+    color: black; 
+}
+
+.volume-container {
+    width: 80%;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
+    margin-top: 5px; 
+}
+
+.volume-slider {
+    width: 100%;
+    margin-top: 5px;
+    background-color: #cccccc;
+    height: 8px; 
+    outline: none; 
+    appearance: none; 
+    border-radius: 15px;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    background-color: black; 
+    width:  20px; 
+    height: 20px; 
+    border: none; 
+    border-radius: 50%; 
+}
+
+h1, h2, button {
+    font-family: 'melted monster', sans-serif; 
+}
+
+.controls-button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* align icon to the left */
+    padding: 10px;
+    margin-top: 30px;
+    background-color: black;
+    color: white;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    font-size: 18px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.continuar-button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* align icon to the left */
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: #009245;
+    color: white;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    font-size: 18px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.salir-button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* align icon to the left */
+    padding: 10px;
+    margin-top: 30px;
+    background-color: #ed1c24;
+    color: white;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    font-size: 18px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.controls-button i, .continuar-button i, .salir-button i {
+    margin-right: 5px; /* adjust margin as needed */
+}
+
+.controls-button-text, .continuar-button-text, .salir-button-text {
+    text-align: center; /* center text horizontally */
+    flex-grow: 1; /* make text take up available space */
+}
+
+.controls-button,.continuar-button,.salir-button {
+    width: 100%;
+    margin-right: 0; 
+}
+
+.controls-button:hover,.continuar-button:hover,.salir-button:hover{
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.3);
+}
+
+.icon {
+    margin-right: 10px;
+}

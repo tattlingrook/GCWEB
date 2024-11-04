@@ -1,0 +1,73 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'melted monster', sans-serif;
+    color: white;
+    background-image: url('../img/Fondo20.jpg'); /* Reemplaza 'fondo.jpg' con la ruta de tu imagen de fondo */
+    background-size: cover;
+    }
+
+    body.transition {
+        opacity: 0;
+        transition: opacity 0.5s ease-out;
+    }
+    
+    header {
+    text-align: center;
+    padding: 50px 0;
+    }
+    
+    .logo {
+    max-width: 30%;
+    height: auto;
+    }
+    
+    nav {
+        text-align: center; 
+        }
+        
+        ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        }
+        
+        li {
+        display: flex;
+        align-items: center;
+        margin: 10px auto; 
+        padding: 10px;
+        font-size: 18px;
+        width: 200px; 
+        transition: transform 0.3s, box-shadow 0.3s;
+        border: 2px solid transparent; 
+        border-radius: 5px;
+        }
+        
+        
+    
+    .green {
+    background-color: green;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombras verdes para efecto de profundidad */
+    }
+    
+    .black {
+    background-color: black;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombras negras para efecto de profundidad */
+    }
+    
+    .red {
+    background-color: red;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombras rojas para efecto de profundidad */
+    }
+    
+    .icon {
+        margin-right: 10px;
+        
+    }
+    
+    /* Efecto hover para resaltar los botones al pasar el ratón */
+li:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.3);
+    }

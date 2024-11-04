@@ -1,0 +1,100 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'melted monster', sans-serif;
+    color: white;
+    background-image: url('../img/Fondo20.jpg'); 
+    background-size: cover;
+    overflow: hidden;
+    }
+
+    .container {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        padding: 30px 0;
+    }
+    
+    .title {
+        font-size: 50px;
+        color: white;
+        text-align: center;
+        margin:  0;
+    }
+
+    .back-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #333333;
+        color: white;
+        font-family: 'melted monster', sans-serif; 
+        border: 2px solid transparent;
+        border-radius: 5px;
+        padding: 10px;
+        margin-top: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: transform 0.3s, box-shadow 0.3s;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        font-size: 18px;
+    }
+
+    .back-button i {
+        margin-right: 5px;
+    }
+
+    .back-button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 16px rgba(255, 255, 255, 0.3);
+    }
+
+    .rectangle {
+        width: 600px;
+        height: 50px;
+        background-color: #ffffff; /* Puedes cambiar este color según tus preferencias */
+        border-radius: 15px; /* Ajusta el valor de border-radius para bordes redondeados */
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .inner-rectangle {
+        position: absolute;
+        top: 20%;
+        left: 33.25%;
+        width: 80px;
+        height: 45px;
+        background-color: #00ff00;
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+        transform: translate(-50%, -50%);
+    }
+
+    .inner-rectangle-2 {
+        position: absolute;
+        top: 20%;
+        left: 66.78%;
+        width: 80px;
+        height: 45px;
+        background-color: #b3b3b3;
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
+        transform: translate(-50%, -50%);
+    }
+
+    .inner-rectangle-3 {
+        position: absolute;
+        top: 20%;
+        left: 49.978%;
+        width: 434px;
+        height: 45px;
+        background-color: #e6e6e6;
+        transform: translate(-50%, -50%);
+    }
+
+    

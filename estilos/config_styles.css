@@ -1,0 +1,122 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'melted monster', sans-serif;
+    color: white;
+    background-image: url('../img/Fondo20.jpg');
+    background-size: cover;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.inner-container {
+    background-color: #8fa7b1;
+    width:  320px;
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border: 2px solid white;
+    border-radius: 10px;
+}
+
+.black-square {
+    background-color: black;
+    width: 340px;
+    height: 340px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+
+h1, h2 {
+    margin: 5;
+    color: black; 
+}
+
+.volume-container {
+    width: 80%;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
+    margin-top: 5px; 
+}
+
+.volume-slider {
+    width: 100%;
+    margin-top: 5px;
+    background-color: #cccccc;
+    height: 8px; 
+    outline: none; 
+    appearance: none; 
+    border-radius: 15px;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    background-color: black; 
+    width:  20px; 
+    height: 20px; 
+    border: none; 
+    border-radius: 50%; 
+}
+
+h1, h2, button {
+    font-family: 'melted monster', sans-serif; 
+}
+
+.controls-button, .back-button {
+    background-color: black;
+    color: white;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    font-size: 18px;
+}
+
+.controls-button-text {
+    text-align: center; /* center text horizontally */
+    flex-grow: 1; /* make text take up available space */
+}
+
+.controls-button {
+    width: 100%;
+    margin-right: 0; 
+}
+
+.back-button {
+    margin-left: auto; 
+    background-color: #333333;
+}
+
+.controls-button i, .back-button i {
+    margin-right: 5px;
+}
+
+
+.controls-button:hover, .back-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.3);
+}
+
+.icon {
+    margin-right: 10px;
+}
