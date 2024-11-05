@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     createGameBtn.addEventListener("click", () => {
       // Change the page
-    window.location.href = "Escenario1.html";
+    window.location.href = "index.html";
     
       // Add the transition class
     body.classList.add("transition");

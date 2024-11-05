@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang = "es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+    
+        <title>Menú de seleccion</title>
+    </head>
+
+    <body>
+            <script type = "module">
+                  import * as THREE from "./three.module.js";
+                  import { OrbitControls } from "./OrbitControls.js";
+                  import {OBJLoader} from "./Loaders/OBJLoader.js";
+                    import {MTLLoader} from "./Loaders/MTLLoader.js";
+                    import { FontLoader } from './Loaders/FontLoader.js';
+
+                    const skydomeimage = new THREE.TextureLoader().load("./skydome.jpg")
+                    const scene = new THREE.Scene();
+                    scene.background = skydomeimage;
+
+                    const camera = new THREE.PerspectiveCamera(
+                        45,
+                        window.innerWidth / window.innerHeight
+                    );
+
+
+                    camera.position.set(0, 5, 20);
+
+                    const renderer = new THREE.WebGLRenderer();
+                    renderer.setSize(window.innerWidth, window.innerHeight);
+                    document.body.appendChild(renderer.domElement);
+
+                    const hemisphereLight = new THREE.HemisphereLight(0xffffbb, 0x080820, 1);
+                    scene.add(hemisphereLight);
+
+                    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+                    directionalLight.position.set(1, 5, -1);
+                    scene.add(directionalLight);
+
+                    const planeGeometry = new THREE.PlaneGeometry(50, 50);
+                    const planeMaterial = new THREE.MeshStandardMaterial({
+                        color: "blue",
+                    });
+                    const plane = new THREE.Mesh(planeGeometry, planeMaterial);
+                    plane.rotateX(-Math.PI / 2);
+                    plane.position.set(0, -2.5, 0);
+                    scene.add(plane);
+
+                    const loader = new FontLoader();
+                    const font = loader.load(
+
+
+                        // onLoad callback
+                        function (  ) {
+                            // do something with the font
+                            console.log( "Hola mundo" );
+                        },
+
+                        // onProgress callback
+                        function ( xhr ) {
+                            console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
+                        },
+
+                        // onError callback
+                        function ( err ) {
+                            console.log( 'An error happened' );
+                        }
+                    );
+
+
+                    const mtlLoader = new MTLLoader();
+                    mtlLoader.load('./gcw/carros/carro_normal.mtl',
+                        function(materials){
+                        materials.preload();
+                
+                            const loader = new OBJLoader();
+                            loader.setMaterials(materials);
+                            loader.load(
+                                './gcw/carros/carro_normal.obj', // Ruta de tu archivo OBJ
+                                function (object) {
+                                //    handleObjectMovement(object, { left: 37, right: 39, up: 38, down: 40  });
+                                object.scale.set(.05,.05,.05);
+                                    object.position.set(0,0,0);
+                                    scene.add(object);
+                                },
+                                function (xhr) {
+                                    console.log((xhr.loaded / xhr.total * 100) + '% cargado');
+                                },
+                                function (error) {
+                                    console.error('Ocurrió un error al cargar el modelo: ', error);
+                                }
+                            );
+                        }
+   
+   
+   
+                      );
+   
+          // Cargar el modelo OBJ
+        const mtlLoader2 = new MTLLoader();
+        mtlLoader2.load('./gcw/carros/convertible.mtl',
+        function(materials){
+          materials.preload();
+   
+             const loader = new OBJLoader();
+             loader.setMaterials(materials);
+              loader.load(
+                  './gcw/carros/convertible.obj', // Ruta de tu archivo OBJ
+                  function (object) {
+                   
+                //   handleObjectMovement2(object, { left: 65, right: 68, up: 87, down: 83 });
+                   object.scale.set(.05,.05,.05);
+                    object.position.set(10,0,0);
+                      scene.add(object);
+                  },
+                  function (xhr) {
+                      console.log((xhr.loaded / xhr.total * 100) + '% cargado');
+                  },
+                  function (error) {
+                      console.error('Ocurrió un error al cargar el modelo: ', error);
+                  }
+              );
+        }
+   
+   
+   
+    );
+   
+   
+          // Cargar el modelo OBJ
+          const mtlLoader3 = new MTLLoader();
+    mtlLoader3.load('./gcw/carros/deportivo.mtl',
+        function(materials){
+          materials.preload();
+   
+             const loader = new OBJLoader();
+             loader.setMaterials(materials);
+              loader.load(
+                  './gcw/carros/deportivo.obj', // Ruta de tu archivo OBJ
+                  function (object) {
+   
+                   object.scale.set(.05,.05,.05);
+                    object.position.set(-10,0,0);
+                      scene.add(object);
+                  },
+                  function (xhr) {
+                      console.log((xhr.loaded / xhr.total * 100) + '% cargado');
+                  },
+                  function (error) {
+                      console.error('Ocurrió un error al cargar el modelo: ', error);
+                  }
+              );
+        }
+   
+   
+   
+    );
+   
+               // Cargar el modelo OBJ
+               const mtlLoader4 = new MTLLoader();
+    mtlLoader4.load('./gcw/carros/lambo.mtl',
+        function(materials){
+          materials.preload();
+   
+             const loader = new OBJLoader();
+             loader.setMaterials(materials);
+              loader.load(
+                  './gcw/carros/lambo.obj', // Ruta de tu archivo OBJ
+                  function (object) {
+   
+                   object.scale.set(.05,.05,.05);
+                    object.position.set(-20,0,0);
+                      scene.add(object);
+                  },
+                  function (xhr) {
+                      console.log((xhr.loaded / xhr.total * 100) + '% cargado');
+                  },
+                  function (error) {
+                      console.error('Ocurrió un error al cargar el modelo: ', error);
+                  }
+              );
+        }
+   
+   
+   
+    );
+   
+   
+                 // Cargar el modelo OBJ
+                 const mtlLoader5 = new MTLLoader();
+               mtlLoader5.load('./gcw/carros/muscle.mtl',
+               function(materials){
+          materials.preload();
+   
+             const loader = new OBJLoader();
+             loader.setMaterials(materials);
+              loader.load(
+                  './gcw/carros/muscle.obj', // Ruta de tu archivo OBJ
+                  function (object) {
+   
+                   object.scale.set(.05,.05,.05);
+                    object.position.set(20,0,0);
+                    object.rotation.x += object.rotation.x + 0.45;
+                      scene.add(object);
+                  },
+                  function (xhr) {
+                      console.log((xhr.loaded / xhr.total * 100) + '% cargado');
+                  },
+                  function (error) {
+                      console.error('Ocurrió un error al cargar el modelo: ', error);
+                  }
+              );
+        }
+   
+   
+   
+    );
+
+                    const cameraControl = new OrbitControls(camera, renderer.domElement);
+
+                    function animate() {
+                      
+                        
+                        renderer.render(scene, camera);
+                        requestAnimationFrame(animate);
+                    }
+
+                animate();
+
+
+            </script>
+
+    </body>
+
+
+
+
+
+
+
+
+</html>

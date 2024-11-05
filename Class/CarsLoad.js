@@ -5,7 +5,6 @@ class CarsSelect{
 
  // Cargar el modelo OBJ
 
- 
 
 }
 
