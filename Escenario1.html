@@ -27,6 +27,7 @@
       import * as Items from "./Class/Items.js";
       import * as Fonts from "./Class/Fonts.js";
       import * as Scenario from "./Class/Scenarios.js";
+     
      // import {FBXLoader} from "./Loaders/FBXLoader.js";
 
      function handleObjectMovement(object, keys) {
@@ -133,6 +134,7 @@ function handleObjectMovement2(object, keys) {
 
     const skydomeimage = new THREE.TextureLoader().load("./skydome.jpg")
       const scene = new THREE.Scene();
+      scene.userData = {};
       scene.background = skydomeimage;
 
       const camera = new THREE.PerspectiveCamera(
@@ -178,7 +180,7 @@ function handleObjectMovement2(object, keys) {
       Carload.loadlambocar(scene);
 
       Scenario.scenario_1(scene);
-
+      Fonts.texthola(scene);
 
       const cameraControl = new OrbitControls(camera, renderer.domElement);
 
@@ -186,7 +188,9 @@ function handleObjectMovement2(object, keys) {
        
       //  handleObjectMovement(mtlLoader, { left: 37, right: 39, up: 38, down: 40  });
        // handleObjectMovement2(mtlLoader2, { left: 65, right: 68, up: 87, down: 83 });
-      
+   
+
+
         renderer.render(scene, camera);
         requestAnimationFrame(animate);
       }
