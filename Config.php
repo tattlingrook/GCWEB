@@ -20,7 +20,7 @@
                     <nav>
                 <ul style="color: aliceblue;">
                     <li class="black" id="create-game-btn"><i class="icon"><i class="fa-solid fa-play"></i></i>JcE</li>
-                    <li class="black" id="create-game-btn"><i class="icon"><i class="fa-solid fa-play"></i></i><a style ="color: aliceblue; text-decoration: none;" href="GameScreen.html">JcJ</a></li>
+                    <li class="black" id="create-game-btn"><i class="icon"><i class="fa-solid fa-play"></i></i><a style ="color: aliceblue; text-decoration: none;" href="Selector.html">JcJ</a></li>
                     <li class="black" id="configuraciones-btn"><i class="icon"><i class="fa-solid fa-gear"></i></i> Cantidad enemigos</li>
                     <li class="black" id="puntuaciones-btn"><i class="icon"><i class="fa-solid fa-trophy"></i></i> Escenario</li>
                     <li class="green" id="puntuaciones-btn"><i class="icon"><i class="fa-solid fa-trophy"></i></i> Jugar</li>
