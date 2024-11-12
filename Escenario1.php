@@ -1,7 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
-   
+  <?php
+        header('Access-Control-Allow-Origin: *');
+     header('Content-Type: text/html; charset=UTF-8'); // Asegúrate de que el tipo de contenido sea text/html
+    ?>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>War Racing</title>
@@ -24,7 +28,7 @@
       import * as Carload from "./Class/CarsLoad.js";
       import * as Scenario from "./Class/Scenarios.js";
       import * as Fonts from "./Class/Fonts.js";
-
+  
 
 
       //====================================FIREBASE====================================//
@@ -35,6 +39,7 @@
         signOut,
         signInWithPopup,
         GoogleAuthProvider,
+        signInWithRedirect,
       } from "https://www.gstatic.com/firebasejs//11.0.1/firebase-auth.js";
       import {
         getDatabase,
@@ -67,26 +72,32 @@
       const buttonLogin = document.getElementById("btn-login");
       const buttonLogout = document.getElementById("btn-logout");
 
-      var currentUser;
+      let currentUser;
       buttonLogin.addEventListener("click", async function () {
         await signInWithPopup(auth, provider)
           .then((result) => {
+            if (result.user) {
+              const credential = GoogleAuthProvider.credentialFromResult(result);
+              const token = credential.accessToken;
 
-            const credential = GoogleAuthProvider.credentialFromResult(result);
-            const token = credential.accessToken;
+              const user = result.user;
+              currentUser = user;
+                alert(currentUser);
+          //    console.log(user.email); // Asegúrate de que user.email esté definido
+              writeUserData();
+            } else {
+              console.error("No se pudieron recuperar los datos del usuario.");
+            }
 
-            const user = result.user;
-            currentUser = user;
-            writeUserData(user.uid, 0, 0);
 
           })
           .catch((error) => {
 
             const errorCode = error.code;
             const errorMessage = error.message;
-            const email = error.customData.email;
+         //    const email = error.customData.email;
             const credential = GoogleAuthProvider.credentialFromError(error);
-
+           // console.error(`Error Code: ${errorCode}, Message: ${errorMessage}, Email: ${email}`);
           });
       });
 
@@ -212,6 +223,12 @@
           controls.update();
           renderer.render(scene, camera);
           updateCarPosition();
+      }
+
+      function writeUserData() {
+        set(ref(db, "jugadores/1" ), {
+          x: "Hola mundo"
+        });
       }
 
       animate();
