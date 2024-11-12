@@ -30,12 +30,12 @@
 <script>
     function openSettings() {
      
-        location.href = 'GameScreen.html';
+        location.href = 'GameScreen.php';
     }
 
     function openSettings_02() {
     
-        location.href = 'index.html';
+        location.href = 'index.php';
     }
 </script>
 </body>

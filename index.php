@@ -18,8 +18,8 @@
     <ul>
         <nav>
     <ul style="color: aliceblue;">
-        <li class="black" id="create-game-btn"><i class="icon"><i class="fa-solid fa-play"></i></i><a style ="color: aliceblue; text-decoration: none;" href="Selector.html">PVP Arena</a></li>
-        <li class="black" id="create-game-btn"><i class="icon"><i class="fa-solid fa-play"></i></i><a style ="color: aliceblue; text-decoration: none;" href="Escenario1.html">Avalancha</a></li>
+        <li class="black" id="create-game-btn"><i class="icon"><i class="fa-solid fa-play"></i></i><a style ="color: aliceblue; text-decoration: none;" href="Selector.php">PVP Arena</a></li>
+        <li class="black" id="create-game-btn"><i class="icon"><i class="fa-solid fa-play"></i></i><a style ="color: aliceblue; text-decoration: none;" href="Escenario1.php">Avalancha</a></li>
         <li class="black" id="configuraciones-btn"><i class="icon"><i class="fa-solid fa-gear"></i></i> Configuraciones</li>
         <li class="black" id="puntuaciones-btn"><i class="icon"><i class="fa-solid fa-trophy"></i></i> Puntuaciones</li>
     </ul>

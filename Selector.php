@@ -23,16 +23,18 @@
 </head>
 <body>
     <div id="menu">
-        <button id="normalCar">Coche Normal</button>
+        <button id="normalCar" value = <?php echo $Carro = "normalCar"?>>Coche Normal</button>
         <button id="muscleCar">Coche Muscle</button>
         <button id="deportivoCar">Coche Deportivo</button>
         <button id="convertibleCar">Coche Convertible</button>
         <button id="lamboCar">Coche Lambo</button>
+        <button id="Start">Jugar</button>
     </div>
+    <audio id="SoundCar" src="./Sounds/Cars effects/Car_Engine_Start_Up.ogg"></audio>
     <script type="module">
        // main.js
 import * as THREE from './three.module.js';
-//import { OrbitControls } from './OrbitControls.js';
+import { OrbitControls } from './OrbitControls.js';
 import * as Carload from './Class/CarsLoad.js';
 import * as Fonts from './Class/Fonts.js';
 
@@ -66,34 +68,56 @@ Carload.loadmusclecar(scene);
 Carload.loadeportivecar(scene);
 Carload.loadconvertiblecar(scene);
 Carload.loadlambocar(scene);
-Fonts.textselect(scene);
+Fonts.texthola(scene);
 
-//const cameraControl = new OrbitControls(camera, renderer.domElement);
+const cameraControl = new OrbitControls(camera, renderer.domElement); 
+cameraControl.enableRotate = false;
+//cameraControl.enablePan = false;
+var selectedCar = "";
 
-function showOnly(selectedCarType) {
+function showOnly(selectedCarType, soundID) {
   const carTypes = ['normalCar', 'muscleCar', 'deportivoCar', 'convertibleCar', 'lamboCar'];
   carTypes.forEach((carType) => {
     if (scene.userData[carType]) {
       scene.userData[carType].visible = (carType === selectedCarType);
+    //  selectedCar = selectedCarType;
     }
   });
+
+  document.getElementById(soundID).play();
+
+  localStorage.setItem('selectedCar', selectedCarType);
 }
 
 // Event listeners for the buttons
 document.getElementById('normalCar').addEventListener('click', () => {
-  showOnly('normalCar');
+  showOnly('normalCar', 'SoundCar');
+  selectedCar = "normalCar";
+//  window.location.href = `Escenario1.php?selectedCar=normalCar`;
 });
 document.getElementById('muscleCar').addEventListener('click', () => {
-  showOnly('muscleCar');
+  showOnly('muscleCar', 'SoundCar');
+  selectedCar = "muscleCar";
+  //window.location.href = `Escenario1.php?selectedCar=muscleCar`;
 });
 document.getElementById('deportivoCar').addEventListener('click', () => {
-  showOnly('deportivoCar');
+  showOnly('deportivoCar', 'SoundCar');
+  selectedCar = "deportivoCar";
+  //  window.location.href = `Escenario1.php?selectedCar=deportivoCar`;
 });
 document.getElementById('convertibleCar').addEventListener('click', () => {
-  showOnly('convertibleCar');
+  showOnly('convertibleCar', 'SoundCar');
+  selectedCar = "convertibleCar";
+//  window.location.href = `Escenario1.php?selectedCar=convertibleCar`;
 });
 document.getElementById('lamboCar').addEventListener('click', () => {
-  showOnly('lamboCar');
+  showOnly('lamboCar', 'SoundCar');
+  selectedCar = "lamboCar";
+ // window.location.href = `Escenario1.php?selectedCar=lamboCar`;
+});
+
+document.getElementById('Start').addEventListener('click', () => {
+  window.location.href = `Escenario1.php?selectedCar=` + selectedCar ;
 });
 
 function animate() {

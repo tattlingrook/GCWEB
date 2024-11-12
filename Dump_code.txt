@@ -1,0 +1,106 @@
+   function handleObjectMovement(object, keys) {
+    const state = {
+        left: false,
+        right: false,
+        up: false,
+        down: false,
+    };
+
+    document.addEventListener('keydown', (e) => {
+      switch (e.keyCode) {
+            case keys.left:
+                state.left = true;
+                object.position.x -= 1;
+                break;
+            case keys.right:
+                state.right = true;
+                object.position.x += 1;
+                break;
+            case keys.up:
+                state.up = true;
+                object.position.z -= 1;
+                break;
+            case keys.down:
+                state.down = true;
+                object.position.z += 1;
+                break;
+        }
+    });
+
+    document.addEventListener('keyup', (e) => {
+        switch (e.keyCode) {
+            case keys.left:
+                state.left = false;
+                break;
+            case keys.right:
+                state.right = false;
+                break;
+            case keys.up:
+                state.up = false;
+                break;
+            case keys.down:
+                state.down = false;
+                break;
+        }
+    });
+
+ 
+  
+}
+
+
+function handleObjectMovement2(object, keys) {
+    const state = {
+        left: false,
+        right: false,
+        up: false,
+        down: false,
+    };
+
+    document.addEventListener('keydown', (e) => {
+        switch (e.keyCode) {
+            case keys.left:
+                state.left = true;
+                object.position.x -= 1;
+                break;
+            case keys.right:
+                state.right = true;
+                object.position.x += 1;
+                break;
+            case keys.up:
+                state.up = true;
+                object.position.z -= 1;
+                break;
+            case keys.down:
+                state.down = true;
+                object.position.z += 1;
+                break;
+        }
+      
+    });
+
+    document.addEventListener('keyup', (e) => {
+        switch (e.keyCode) {
+            case keys.left:
+                state.left = false;
+                break;asdad
+            case keys.right:
+                state.right = false;
+                
+                break;
+            case keys.up:
+                state.up = false;
+                break;
+            case keys.down:
+                state.down = false;
+                break;
+        }
+    });
+
+ 
+}
+
+
+  
+      //  handleObjectMovement(mtlLoader, { left: 37, right: 39, up: 38, down: 40  });
+       // handleObjectMovement2(mtlLoader2, { left: 65, right: 68, up: 87, down: 83 });

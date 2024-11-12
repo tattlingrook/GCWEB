@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     createGameBtn.addEventListener("click", () => {
       // Change the page
-    window.location.href = "index.html";
+    window.location.href = "index.php";
     
       // Add the transition class
     body.classList.add("transition");
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     configuracionesBtn.addEventListener("click", () => {
         // Change the page
-    window.location.href = "configuraciones.html";
+    window.location.href = "configuraciones.php";
     
         // Add the transition class
     body.classList.add("transition");
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     puntuacionesBtn.addEventListener("click", () => {
         // Change the page
-    window.location.href = "puntuaciones.html";
+    window.location.href = "puntuaciones.php";
     
         // Add the transition class
     body.classList.add("transition");

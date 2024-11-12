@@ -6,7 +6,7 @@ export function texthola(scene){
     
     const fontLoader = new FontLoader();
     fontLoader.load(
-    '../Fonts/gentilis_regular.typeface.json',
+    'Fonts/gentilis_regular.typeface.json',
     (font)=>{
         const textGeometry = new TextGeometry('Hola mundo',{
             height:2,
@@ -31,7 +31,7 @@ export function textselect(scene){
     
     const fontLoader = new FontLoader();
     fontLoader.load(
-    '../Fonts/gentilis_regular.typeface.json',
+    'Fonts/gentilis_regular.typeface.json',
     (font)=>{
         const textGeometry = new TextGeometry('Escoge tu vehiculo',{
             height:2,

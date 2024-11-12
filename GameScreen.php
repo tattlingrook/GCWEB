@@ -9,11 +9,11 @@
 </head>
 <body>
     <div class="container">
-        <div class="black-square">
-        <div class="inner-container">
+            <div class="black-square">
+            <div class="inner-container">
+            </div>
         </div>
     </div>
-</div>
 <button class="settings-button" onclick="openSettings()">
     <i class="fas fa-cog"></i>
     </button>

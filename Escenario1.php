@@ -1,149 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+   
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>War Racing</title>
     <style>
+
       body {
         margin: 0;
       }
     </style>
   </head>
   <body>
+  <button type="button" id="btn-login">Login</button>
+  <button type="button" id="btn-logout">Logout</button>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/examples/js/loaders/FBXLoader.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/examples/js/loaders/FBXLoader.js"></script>
 
     <script type="module">
       import * as THREE from "./three.module.js";
       import { OrbitControls } from "./OrbitControls.js";
-      import { STLLoader } from "./Loaders/STLLoader.js";
-      import { GLTFLoader } from "./Loaders/GLTFLoader.js";
-      import {OBJLoader} from "./Loaders/OBJLoader.js";
-      import {MTLLoader} from "./Loaders/MTLLoader.js";
-      import {FontLoader} from "./Loaders/FontLoader.js";
-      import {TextGeometry} from "./Loaders/TextGeometry.js";
       import * as Carload from "./Class/CarsLoad.js";
-      import * as Items from "./Class/Items.js";
-      import * as Fonts from "./Class/Fonts.js";
       import * as Scenario from "./Class/Scenarios.js";
-     
-     // import {FBXLoader} from "./Loaders/FBXLoader.js";
-
-     function handleObjectMovement(object, keys) {
-    const state = {
-        left: false,
-        right: false,
-        up: false,
-        down: false,
-    };
-
-    document.addEventListener('keydown', (e) => {
-      switch (e.keyCode) {
-            case keys.left:
-                state.left = true;
-                object.position.x -= 1;
-                break;
-            case keys.right:
-                state.right = true;
-                object.position.x += 1;
-                break;
-            case keys.up:
-                state.up = true;
-                object.position.z -= 1;
-                break;
-            case keys.down:
-                state.down = true;
-                object.position.z += 1;
-                break;
-        }
-    });
-
-    document.addEventListener('keyup', (e) => {
-        switch (e.keyCode) {
-            case keys.left:
-                state.left = false;
-                break;
-            case keys.right:
-                state.right = false;
-                break;
-            case keys.up:
-                state.up = false;
-                break;
-            case keys.down:
-                state.down = false;
-                break;
-        }
-    });
-
- 
-  
-}
+      import * as Fonts from "./Class/Fonts.js";
 
 
-function handleObjectMovement2(object, keys) {
-    const state = {
-        left: false,
-        right: false,
-        up: false,
-        down: false,
-    };
 
-    document.addEventListener('keydown', (e) => {
-        switch (e.keyCode) {
-            case keys.left:
-                state.left = true;
-                object.position.x -= 1;
-                break;
-            case keys.right:
-                state.right = true;
-                object.position.x += 1;
-                break;
-            case keys.up:
-                state.up = true;
-                object.position.z -= 1;
-                break;
-            case keys.down:
-                state.down = true;
-                object.position.z += 1;
-                break;
-        }
-      
-    });
+      //====================================FIREBASE====================================//
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+      import {
+        getAuth,
+        signOut,
+        signInWithPopup,
+        GoogleAuthProvider,
+      } from "https://www.gstatic.com/firebasejs//11.0.1/firebase-auth.js";
+      import {
+        getDatabase,
+        ref,
+        onValue,
+        set,
+      } from "https://www.gstatic.com/firebasejs//11.0.1/firebase-database.js";
 
-    document.addEventListener('keyup', (e) => {
-        switch (e.keyCode) {
-            case keys.left:
-                state.left = false;
-                break;asdad
-            case keys.right:
-                state.right = false;
-                
-                break;
-            case keys.up:
-                state.up = false;
-                break;
-            case keys.down:
-                state.down = false;
-                break;
-        }
-    });
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-analytics.js";
 
- 
-}
 
-    const skydomeimage = new THREE.TextureLoader().load("./skydome.jpg")
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+          apiKey: "AIzaSyDLiBo7b6KcF4bR8d9LCjL6lzid5Zmummo",
+          authDomain: "gcwc-40cc5.firebaseapp.com",
+          databaseURL: "https://gcwc-40cc5-default-rtdb.firebaseio.com",
+          projectId: "gcwc-40cc5",
+          storageBucket: "gcwc-40cc5.appspot.com",
+          messagingSenderId: "84941083045",
+          appId: "1:84941083045:web:dcc0e88d0a2b1784c9d84c",
+          measurementId: "G-P5F3KEGPDT"
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+      const auth = getAuth();
+      const provider = new GoogleAuthProvider();
+      const db = getDatabase();
+
+      const buttonLogin = document.getElementById("btn-login");
+      const buttonLogout = document.getElementById("btn-logout");
+
+      var currentUser;
+      buttonLogin.addEventListener("click", async function () {
+        await signInWithPopup(auth, provider)
+          .then((result) => {
+
+            const credential = GoogleAuthProvider.credentialFromResult(result);
+            const token = credential.accessToken;
+
+            const user = result.user;
+            currentUser = user;
+            writeUserData(user.uid, 0, 0);
+
+          })
+          .catch((error) => {
+
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            const email = error.customData.email;
+            const credential = GoogleAuthProvider.credentialFromError(error);
+
+          });
+      });
+
+      buttonLogout.addEventListener("click", async function () {
+        await signOut(auth)
+          .then(() => {
+            console.log("Sign-out successful");
+          })
+          .catch((error) => {
+            console.log("An error happened", error);
+          });
+      });
+
+      //============================RENDERIZADO====================================//
+      const skydomeimage = new THREE.TextureLoader().load("./skydome.jpg");
       const scene = new THREE.Scene();
       scene.userData = {};
       scene.background = skydomeimage;
 
-      const camera = new THREE.PerspectiveCamera(
-        45,
-        window.innerWidth / window.innerHeight
-      );
-
-      
-
+      const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight);
       camera.position.set(0, 5, 20);
 
       const renderer = new THREE.WebGLRenderer();
@@ -158,41 +121,97 @@ function handleObjectMovement2(object, keys) {
       scene.add(directionalLight);
 
       const planeGeometry = new THREE.PlaneGeometry(50, 50);
-      const planeMaterial = new THREE.MeshStandardMaterial({
-        color: "slategrey",
-      });
+      const planeMaterial = new THREE.MeshStandardMaterial({ color: "slategrey" });
       const plane = new THREE.Mesh(planeGeometry, planeMaterial);
       plane.rotateX(-Math.PI / 2);
       plane.position.set(0, -2.5, 0);
 
-      const light = new THREE.PointLight( 0xffffff, 100, 20);
+      const light = new THREE.PointLight(0xffffff, 100, 20);
       light.position.set(0, 20, 0);
-      light.castShadow = true; // default false
+      light.castShadow = true;
 
+      const controls = new OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
 
-      scene.add( light, plane);
-
-      //Carga de modelos de  vehiculos
-      Carload.loadnormalcar(scene);
-      Carload.loadmusclecar(scene);
-      Carload.loadeportivecar(scene);
-      Carload.loadconvertiblecar(scene);
-      Carload.loadlambocar(scene);
+      scene.add(light, plane);
 
       Scenario.scenario_1(scene);
       Fonts.texthola(scene);
 
-      const cameraControl = new OrbitControls(camera, renderer.domElement);
+      <?php
+      if (isset($_GET['selectedCar'])) {
+          $selectedCar = $_GET['selectedCar'];
+          echo "const selectedCar = '$selectedCar';";
+      } else {
+          echo "const selectedCar = null;";
+      }
+      ?>
+
+      let car = null;
+
+      if (selectedCar) {
+          switch(selectedCar) {
+              case 'normalCar':
+                  Carload.loadnormalcar(scene, (loadedCar) => car = loadedCar);
+                  break;
+              case 'muscleCar':
+                  Carload.loadmusclecar(scene, (loadedCar) => car = loadedCar);
+                  break;
+              case 'deportivoCar':
+                  Carload.loadeportivecar(scene, (loadedCar) => car = loadedCar);
+                  break;
+              case 'convertibleCar':
+                  Carload.loadconvertiblecar(scene, (loadedCar) => car = loadedCar);
+                  break;
+              case 'lamboCar':
+                  Carload.loadlambocar(scene, (loadedCar) => car = loadedCar);
+                  break;
+              default:
+                  console.error('Modelo de coche no reconocido:', selectedCar);
+                  break;
+          }
+      } else {
+          console.error('No se ha seleccionado ningún coche.');
+      }
+
+      const keysPressed = {};
+      document.addEventListener('keydown', (event) => {
+          keysPressed[event.key.toLowerCase()] = true;
+      });
+
+      document.addEventListener('keyup', (event) => {
+          keysPressed[event.key.toLowerCase()] = false;
+      });
+
+      function updateCarPosition() {
+          if (!car) return;
+
+          if (keysPressed['w']) {
+              car.position.z -= 0.1;
+          }
+          if (keysPressed['s']) {
+              car.position.z += 0.1;
+          }
+          if (keysPressed['a']) {
+              car.position.x -= 0.1;
+          }
+          if (keysPressed['d']) {
+              car.position.x += 0.1;
+          }
+
+          if (keysPressed['e']) {
+              car.rotation.y += 0.01;
+          }
+          if (keysPressed['q']) {
+              car.rotation.y -= 0.01;
+          }
+      }
 
       function animate() {
-       
-      //  handleObjectMovement(mtlLoader, { left: 37, right: 39, up: 38, down: 40  });
-       // handleObjectMovement2(mtlLoader2, { left: 65, right: 68, up: 87, down: 83 });
-   
-
-
-        renderer.render(scene, camera);
-        requestAnimationFrame(animate);
+          requestAnimationFrame(animate);
+          controls.update();
+          renderer.render(scene, camera);
+          updateCarPosition();
       }
 
       animate();
