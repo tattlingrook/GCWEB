@@ -1,0 +1,48 @@
+newmtl estadio:color_1206582
+illum 4
+Kd 0.07 0.41 0.21
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+newmtl estadio:color_6383466
+illum 4
+Kd 0.38 0.40 0.42
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+newmtl estadio:color_9771553
+illum 4
+Kd 0.58 0.10 0.13
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+newmtl estadio:color_10988977
+illum 4
+Kd 0.65 0.68 0.69
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+newmtl estadio:color_12568524
+illum 4
+Kd 0.75 0.78 0.80
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+newmtl estadio:color_16311991
+illum 4
+Kd 0.97 0.90 0.72
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+newmtl estadio:color_16768282
+illum 4
+Kd 1.00 0.87 0.10
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+newmtl estadio:color__1023419110
+illum 4
+Kd 1.00 0.87 0.10
+Ka 0.00 0.00 0.00
+Tf 0.24 0.24 0.24
+Ni 1.00
